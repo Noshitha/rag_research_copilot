@@ -5,31 +5,52 @@ An intelligent multi-agent research assistant built with **LangGraph**, **LangCh
 ---
 
 ## Features :
-- 🔍 **Paper Retrieval** — Fetch papers via arXiv or Semantic Scholar (MCP-integrated tools).  
-- 🧠 **LLM Summarization** — Generate concise summaries using LangChain RAG pipelines.  
-- 📊 **Topic Clustering** — Embed and group papers via FAISS + t-SNE.  
-- 🕸️ **Agentic Workflow** — Managed by LangGraph for modular orchestration.  
-- 🖥️ **Visualization** — Interactive Streamlit dashboard for exploring topics and insights.
+-  **Paper Retrieval** - Fetch recent papers from **arXiv** via MCP.  
+-  **LLM Summarization** — Uses **Hugging Face BART-large-CNN** for local summarization (no API calls or credits).
+-  **Topic Clustering** — Generates semantic embeddings with **Sentence-BERT** and groups related works.
+-  **Interactive Visualization** – Displays topic clusters via **Streamlit + Plotly** scatterplots.
+-  **LangGraph Orchestration** – Manages agents in a stateful, modular workflow.
+-  **Offline & Extensible** – Runs locally on CPU/GPU (MPS supported) and easily extendable with new MCP tools.
 
 ---
 
 ## Architecture :
-User Query
-↓
-Retriever Agent → (MCP: arXiv Tool)
-↓
-Summarizer Agent → (LangChain RAG)
-↓
-Cluster Agent → (MCP: Semantic Clustering)
-↓
-Visualizer Agent → Streamlit Dashboard
+                          ┌───────────────────────────────────┐
+                          │         User Query Input          │
+                          │  (e.g., "Multilingual Translation") │
+                          └───────────────────────────────────┘
+                                             │
+                                             ▼
+                     ┌─────────────────────────────────────┐
+                     │  Retriever Agent (LangGraph Node 1) │
+                     │  → fetch_arxiv_papers() via MCP      │
+                     │  → Retrieves 3–5 recent papers       │
+                     └─────────────────────────────────────┘
+                                             │
+                                             ▼
+                     ┌─────────────────────────────────────┐
+                     │ Summarizer Agent (LangGraph Node 2) │
+                     │  → Local BART summarizer (HuggingFace) │
+                     │  → On-device MPS inference (no API) │
+                     │  → Outputs concise 2–3 sentence summaries │
+                     └─────────────────────────────────────┘
+                                             │
+                                             ▼
+                     ┌─────────────────────────────────────┐
+                     │ Cluster Agent (LangGraph Node 3)    │
+                     │  → Sentence-BERT embeddings          │
+                     │  → KMeans + PCA 2-D projection       │
+                     │  → Groups similar papers by topic    │
+                     └─────────────────────────────────────┘
+                                             │
+                                             ▼
+                     ┌─────────────────────────────────────┐
+                     │ Streamlit Dashboard                 │
+                     │  → Displays clusters & summaries     │
+                     │  → Plotly scatterplot visualization  │
+                     │  → Allows export (optional next)     │
+                     └─────────────────────────────────────┘
 
-## Tech Stack :
-- **LLM:** GPT-4 / Claude / local model  
-- **Frameworks:** LangGraph, LangChain  
-- **Tool Protocol:** langchain-mcp-adapters  
-- **Vector Store:** FAISS  
-- **UI:** Streamlit or Gradio  
 
 ## Installation :
 ```bash
