@@ -4,13 +4,13 @@ An intelligent multi-agent research assistant built with **LangGraph**, **LangCh
 
 ---
 
-## Features :
--  **Paper Retrieval** - Fetch recent papers from **arXiv** via MCP.  
--  **LLM Summarization** — Uses **Hugging Face BART-large-CNN** for local summarization (no API calls or credits).
--  **Topic Clustering** — Generates semantic embeddings with **Sentence-BERT** and groups related works.
--  **Interactive Visualization** – Displays topic clusters via **Streamlit + Plotly** scatterplots.
--  **LangGraph Orchestration** – Manages agents in a stateful, modular workflow.
--  **Offline & Extensible** – Runs locally on CPU/GPU (MPS supported) and easily extendable with new MCP tools.
+## Key Highlights
+-  **Retrieval Agent:** Queries and extracts papers from *arXiv* using a custom **MCP** integration.  
+-  **Summarization Agent:** Performs on-device abstractive summarization via **Hugging Face BART-large-CNN** (no API calls or cost).  
+-  **Clustering Agent:** Uses **Sentence-BERT embeddings** + **K-Means** to group related papers by topic and generate 2-D projections.  
+-  **Visualization Layer:** Built with **Streamlit** + **Plotly**, producing an interactive dashboard with topic clusters and summaries.  
+-  **LangGraph Workflow:** Manages agent state transitions (retriever -> summarizer -> clusterer) for modular, debuggable execution.  
+-  **Offline & Extensible:** Runs locally on CPU/GPU (MPS supported) and easily extendable with new MCP tools.
 
 ---
 
@@ -56,5 +56,6 @@ An intelligent multi-agent research assistant built with **LangGraph**, **LangCh
 ```bash
 git clone https://github.com/Noshitha98/rag_research_copilot.git
 ```
+
 ## Streamlit deployment:
 <img width="1070" height="498" alt="image" src="https://github.com/user-attachments/assets/2876869d-8b62-43a7-97b5-abf9a31b4dda" />
