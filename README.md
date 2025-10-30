@@ -15,41 +15,41 @@ An intelligent multi-agent research assistant built with **LangGraph**, **LangCh
 ---
 
 ## Architecture :
-                          ┌───────────────────────────────────┐
-                          │         User Query Input          │
-                          │  (e.g., "Multilingual Translation") │
-                          └───────────────────────────────────┘
+                          ┌──────────────────────────────────────┐
+                          │         User Query Input             │
+                          │  (e.g., "Multilingual Translation")  │
+                          └──────────────────────────────────────┘
                                              │
                                              ▼
-                     ┌─────────────────────────────────────┐
-                     │  Retriever Agent (LangGraph Node 1) │
-                     │  → fetch_arxiv_papers() via MCP      │
-                     │  → Retrieves 3–5 recent papers       │
-                     └─────────────────────────────────────┘
+                     ┌────────────────────────────────────────┐
+                     │  Retriever Agent (LangGraph Node 1)    │
+                     │  → fetch_arxiv_papers() via MCP        │
+                     │  → Retrieves 3–5 recent papers         │
+                     └────────────────────────────────────────┘
                                              │
                                              ▼
-                     ┌─────────────────────────────────────┐
-                     │ Summarizer Agent (LangGraph Node 2) │
-                     │  → Local BART summarizer (HuggingFace) │
-                     │  → On-device MPS inference (no API) │
+                     ┌───────────────────────────────────────────┐
+                     │ Summarizer Agent (LangGraph Node 2)       │
+                     │  → Local BART summarizer (HuggingFace)    │
+                     │  → On-device MPS inference (no API)       │
                      │  → Outputs concise 2–3 sentence summaries │
-                     └─────────────────────────────────────┘
+                     └───────────────────────────────────────────┘
                                              │
                                              ▼
-                     ┌─────────────────────────────────────┐
-                     │ Cluster Agent (LangGraph Node 3)    │
-                     │  → Sentence-BERT embeddings          │
-                     │  → KMeans + PCA 2-D projection       │
-                     │  → Groups similar papers by topic    │
-                     └─────────────────────────────────────┘
+                     ┌────────────────────────────────────────┐
+                     │ Cluster Agent (LangGraph Node 3)       │
+                     │  → Sentence-BERT embeddings            │
+                     │  → KMeans + PCA 2-D projection         │
+                     │  → Groups similar papers by topic      │
+                     └────────────────────────────────────────┘
                                              │
                                              ▼
-                     ┌─────────────────────────────────────┐
-                     │ Streamlit Dashboard                 │
-                     │  → Displays clusters & summaries     │
-                     │  → Plotly scatterplot visualization  │
-                     │  → Allows export (optional next)     │
-                     └─────────────────────────────────────┘
+                     ┌────────────────────────────────────────┐
+                     │ Streamlit Dashboard                    │
+                     │  → Displays clusters & summaries       │
+                     │  → Plotly scatterplot visualization    │
+                     │  → Allows export (optional next)       │
+                     └────────────────────────────────────────┘
 
 
 ## Installation :
